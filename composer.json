@@ -1,5 +1,5 @@
 {
-    "name": "hakim/laravel-claude-chat",
+    "name": "hechjay8282/laravel-claude-chat",
     "description": "A plug-and-play Claude AI chatbot widget for Laravel apps",
     "type": "library",
     "license": "MIT",
