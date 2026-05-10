@@ -76,7 +76,9 @@ class ChatController extends Controller
                     $toolResults = [];
                     foreach ($assistantContent as $block) {
                         if (($block['type'] ?? '') === 'tool_use') {
-                            $result        = $this->toolService->handleToolCall($block['name'], $block['input'] ?? []);
+                            $input  = $block['input'] ?? [];
+                            $input  = $input instanceof \stdClass ? [] : (array) $input;
+                            $result = $this->toolService->handleToolCall($block['name'], $input);
                             $toolResults[] = [
                                 'type'        => 'tool_result',
                                 'tool_use_id' => $block['id'],
