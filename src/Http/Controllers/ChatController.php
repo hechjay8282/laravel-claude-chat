@@ -65,6 +65,12 @@ class ChatController extends Controller
 
                 if ($stopReason === 'tool_use') {
                     $assistantContent = $data['content'] ?? [];
+                    foreach ($assistantContent as &$block) {
+                        if (($block['type'] ?? '') === 'tool_use' && empty($block['input'])) {
+                            $block['input'] = new \stdClass();
+                        }
+                    }
+                    unset($block);
                     $messages[]       = ['role' => 'assistant', 'content' => $assistantContent];
 
                     $toolResults = [];
